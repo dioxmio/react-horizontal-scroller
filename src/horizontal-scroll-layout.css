@@ -1,0 +1,9 @@
+.react-scroller ::-webkit-scrollbar {
+  width: 0px;  /* remove scrollbar space */
+  background: transparent;  /* optional: just make scrollbar invisible */
+}
+
+.react-scroller > div {
+  overflow: scroll;
+  overflow: -moz-scrollbars-none;
+}
