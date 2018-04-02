@@ -17,7 +17,6 @@ export class HorizontalItem extends Component {
     return (
       <div style={componentStyle}>
         <div style={containerStyle}>
-          wrapped
           {this.props.children}
         </div>
       </div>

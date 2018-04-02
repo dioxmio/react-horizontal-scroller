@@ -4,13 +4,11 @@ const loaders = ['babel'];
 
 module.exports = {
     entry: {
-      'index': './src/index.js',
+      'index': './index.js',
     },
-    mode: "production",
     output: {
       path: __dirname,
-      libraryTarget: 'umd',
-      filename: 'lib/[name].js'
+      filename: 'dist/bundle.js'
     },
     module: {
       rules: [
@@ -33,10 +31,6 @@ module.exports = {
     },
     resolve: {
       extensions: ['*', '.webpack.js', '.js']
-    },
-    externals: {
-      'react': 'umd react',
-      'react-dom': 'umd react-dom'
     },
     plugins: [
       ...extraPlugins
