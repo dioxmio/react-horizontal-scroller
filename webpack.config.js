@@ -36,7 +36,8 @@ module.exports = {
     },
     externals: {
       'react': 'umd react',
-      'react-dom': 'umd react-dom'
+      'react-dom': 'umd react-dom',
+      'lodash': 'umd lodash'
     },
     plugins: [
       ...extraPlugins
