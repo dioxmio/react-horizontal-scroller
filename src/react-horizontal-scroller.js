@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import { HorizontalScrollLayout } from './horizontal-scroll-layout';
 import { Motion, spring } from 'react-motion';
+import PropTypes from 'prop-types';
 
 export class ReactHorizontalScroller extends Component {
+  static propTypes = {
+    snapToPage: PropTypes.bool
+  };
+
   constructor(props) {
     super(props);
     this.state = {
       scrollTo: 0
     };
     this.currentPoint = undefined;
-    this.scrollAnimate = this.scrollAnimate.bind(this);
   }
 
-  scrollAnimate(scrollTo) {
+  scrollAnimate = (scrollTo) => {
     this.setState({ scrollTo });
   }
 

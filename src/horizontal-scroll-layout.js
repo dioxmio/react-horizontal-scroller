@@ -3,20 +3,17 @@ import { HorizontalItem } from './horizontal-item';
 import { getPointFromTouch, getNewPointFromEvent } from './mouse-event-utils';
 import * as _ from 'lodash';
 import './horizontal-scroll-layout.css';
+import PropTypes from 'prop-types';
 
 export class HorizontalScrollLayout extends Component {
+  static propTypes = {
+    snapToPage: PropTypes.bool
+  };
+
   constructor(props) {
     super(props);
     this.currentPage = 0;
     this.pageResized = _.debounce(this.pageResized, 100);
-
-    this.scrollToPosition = this.scrollToPosition.bind(this);
-    this.onTouchMove = this.onTouchMove.bind(this);
-    this.onTouchStart = this.onTouchStart.bind(this);
-    this.onWheel = this.onWheel.bind(this);
-    this.onTouchEnd = this.onTouchEnd.bind(this);
-    this.pageResized = this.pageResized.bind(this);
-    this.snapToPage = this.snapToPage.bind(this);
   }
 
   componentDidMount() {
@@ -49,22 +46,22 @@ export class HorizontalScrollLayout extends Component {
     })
   }
 
-  scrollToPosition(offsetX, factor) {
+  scrollToPosition = (offsetX, factor) => {
     const { scrollContainer } = this.refs;
     const { scrollAnimate } = this.props;
     scrollAnimate(scrollContainer.scrollLeft + offsetX * factor);
   }
 
-  onWheel(e) {
+  onWheel = (e) => {
     e.preventDefault();
   }
 
-  onTouchStart(e) {
+  onTouchStart = (e) => {
     e.preventDefault();
     this.currentPoint = getNewPointFromEvent(e);
   }
 
-  onTouchMove(e) {
+  onTouchMove = (e) => {
     e.preventDefault();
     if (!this.currentPoint) {
       return;
@@ -75,14 +72,25 @@ export class HorizontalScrollLayout extends Component {
     this.currentPoint = newPoint;
   }
 
-  pageResized() {
+  isSnapEnabled() {
+    const { snapToPage } = this.props;
+    return snapToPage !== false;
+  }
+
+  pageResized = () => {
+    if (!this.isSnapEnabled()) {
+      return;
+    }
     const { scrollContainer } = this.refs;
     const width = scrollContainer.clientWidth;
     const { scrollAnimate } = this.props;
     scrollAnimate(this.currentPage * width);
   }
 
-  snapToPage() {
+  snapToPage = () => {
+    if (!this.isSnapEnabled()) {
+      return;
+    }
     const { scrollContainer } = this.refs;
     const { scrollAnimate } = this.props;
     const width = scrollContainer.clientWidth;
@@ -90,7 +98,7 @@ export class HorizontalScrollLayout extends Component {
     scrollAnimate(this.currentPage * width);
   }
 
-  onTouchEnd(e) {
+  onTouchEnd = (e) => {
     e.preventDefault();
     this.snapToPage();
     this.currentPoint = undefined;
@@ -109,7 +117,7 @@ export class HorizontalScrollLayout extends Component {
     
     return (
       <div className="react-scroller">
-        <div style={Object.assign({}, componentStyle)} 
+        <div style={componentStyle} 
           ref="scrollContainer"
           onWheel={this.onWheel}
           onMouseDown={this.onTouchStart}
@@ -120,8 +128,8 @@ export class HorizontalScrollLayout extends Component {
           {this.renderItems()}
         </div>
       </div>
-      
     );
   }
 }
+
 
