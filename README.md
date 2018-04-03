@@ -28,11 +28,11 @@ If you want to disabled snap to page feature just do add `snapToPage={false}` pr
 
 - Npm: `npm install --save react-horizontal-scroller`
 
-### Demos
+### Demo
 
 ![](https://raw.githubusercontent.com/dioxmio/react-horizontal-scroller/master/example.gif)
 
-#### Try the Demos Locally
+#### Try the Demo Locally
 ```sh
 git clone https://github.com/dioxmio/react-horizontal-scroller.git
 cd react-horizontal-scroller
