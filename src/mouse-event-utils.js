@@ -1,4 +1,4 @@
-export function getPointFromTouch (touch) {
+export function getPointFromTouch(touch) {
   return {
     x: touch.clientX,
     y: touch.clientY,
