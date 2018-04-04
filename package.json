@@ -1,6 +1,6 @@
 {
   "name": "react-horizontal-scroller",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "description": "react component to show items on an horizontal scrolling maner",
   "main": "lib/index.js",
   "directories": {
