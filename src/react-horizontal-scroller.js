@@ -13,7 +13,6 @@ export class ReactHorizontalScroller extends Component {
     this.state = {
       scrollTo: 0
     };
-    this.currentPoint = undefined;
   }
 
   scrollAnimate = (scrollTo) => {
