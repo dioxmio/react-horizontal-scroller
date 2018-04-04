@@ -6,11 +6,9 @@ export function getPointFromTouch(touch) {
 }
 
 export function getNewPointFromEvent(e) {
-  let newPoint = undefined;
   if ('touches' in e) {
-    newPoint = getPointFromTouch(e.touches[0]);
+    return getPointFromTouch(e.touches[0]);
   } else {
-    newPoint = getPointFromTouch(e);
+    return getPointFromTouch(e);
   }
-  return newPoint;
 }

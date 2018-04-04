@@ -25,6 +25,7 @@ export class HorizontalScrollLayout extends Component {
 
   componentWillUnmount() {
     document.removeEventListener('mouseup', this.onTouchEnd);
+    window.removeEventListener('resize', this.pageResized);
   }
 
   componentDidUpdate() {
